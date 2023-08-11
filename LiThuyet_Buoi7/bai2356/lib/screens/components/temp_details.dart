@@ -4,8 +4,7 @@ import '../../constanins.dart';
 import '../../home_controller.dart';
 import 'tmp_btn.dart';
 
-// This is what we want
-class TempDetails extends StatelessWidget {
+class TempDetails extends StatefulWidget {
   const TempDetails({
     Key? key,
     required HomeController controller,
@@ -13,6 +12,14 @@ class TempDetails extends StatelessWidget {
         super(key: key);
 
   final HomeController _controller;
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _TempDetailsState createState() => _TempDetailsState();
+}
+
+class _TempDetailsState extends State<TempDetails> {
+  int t = 29;
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +33,18 @@ class TempDetails extends StatelessWidget {
             child: Row(
               children: [
                 TempBtn(
-                  isActive: _controller.isCoolSelected,
+                  isActive: widget._controller.isCoolSelected,
                   svgSrc: "assets/icons/coolShape.svg",
                   title: "Cool",
-                  press: _controller.updateCoolSelectedTab,
+                  press: widget._controller.updateCoolSelectedTab,
                 ),
                 const SizedBox(width: defaultPadding),
                 TempBtn(
-                  isActive: !_controller.isCoolSelected,
+                  isActive: !widget._controller.isCoolSelected,
                   svgSrc: "assets/icons/heatShape.svg",
                   title: "Heat",
                   activeColor: redColor,
-                  press: _controller.updateCoolSelectedTab,
+                  press: widget._controller.updateCoolSelectedTab,
                 ),
               ],
             ),
@@ -47,16 +54,24 @@ class TempDetails extends StatelessWidget {
             children: [
               IconButton(
                 padding: EdgeInsets.zero,
-                onPressed: () {},
+                onPressed: () {
+                  t++;
+                  setState(() {
+                  });
+                },
                 icon: const Icon(Icons.arrow_drop_up, size: 48),
               ),
-              const Text(
-                "29" "\u2103",
-                style: TextStyle(fontSize: 86),
+              Text(
+                "$t" "\u2103",
+                style: const TextStyle(fontSize: 86),
               ),
               IconButton(
                 padding: EdgeInsets.zero,
-                onPressed: () {},
+                onPressed: () {
+                  t--;
+                  setState(() {
+                  });
+                },
                 icon: const Icon(Icons.arrow_drop_down, size: 48),
               ),
             ],

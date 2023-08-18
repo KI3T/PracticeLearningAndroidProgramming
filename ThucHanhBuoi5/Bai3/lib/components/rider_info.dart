@@ -35,6 +35,7 @@ class RiderInfo extends StatelessWidget {
             onPressed: () {},
             child: SvgPicture.asset(
               "assets/icons/chat.svg",
+              // ignore: deprecated_member_use
               color: Colors.white,
             ),
           ),
